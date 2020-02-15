@@ -14,6 +14,8 @@ describe('App component', () => {
     fireEvent.click(getByTestId('next'))
     rerender(<App questions={qs} />)
 
+    expect(container.innerHTML).toMatch('Results')
+    expect(container.innerHTML).toMatch('Incorrect')
     expect(container.innerHTML).toMatch('Restart')
   })
 
