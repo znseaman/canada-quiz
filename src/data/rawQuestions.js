@@ -437,7 +437,7 @@ const rawQuestions = [
       "Atlantic, Central, Prairie, West Coast, and North",
       "West, Central, East, Prairies, and Territories"
     ],
-    "answer": "West, Central, East, Prairies, and Territories"
+    "answer": "Atlantic, Central, Prairie, West Coast, and North"
   },
   {
     "id": 41,
@@ -987,7 +987,7 @@ const rawQuestions = [
       "The Constitutional Act of 1982",
       "The Constitutional Act of 2010"
     ],
-    "answer": "The Constitutional Act of 1867"
+    "answer": "The Constitutional Act of 1791"
   },
   {
     "id": 91,
@@ -1020,7 +1020,7 @@ const rawQuestions = [
       "The first Prime Minister of Canada",
       "The Father of Manitoba"
     ],
-    "answer": "The Father of Manitoba"
+    "answer": "A great frontier hero, Mounted Policeman and soldier of the Queen"
   },
   {
     "id": 94,
@@ -1053,7 +1053,7 @@ const rawQuestions = [
       "An explorer of western Canada",
       "Canada's greatest soldier in the First World War"
     ],
-    "answer": "A great frontier hero"
+    "answer": "Canada's greatest soldier in the First World War"
   },
   {
     "id": 97,
@@ -1064,7 +1064,7 @@ const rawQuestions = [
       "About 60,000",
       "More than 600,000"
     ],
-    "answer": "About 60,000"
+    "answer": "More than 600,000"
   },
   {
     "id": 98,
@@ -1086,7 +1086,7 @@ const rawQuestions = [
       "November 11th",
       "December 25th"
     ],
-    "answer": "October 1st"
+    "answer": "November 11th"
   },
   {
     "id": 100,
@@ -1174,7 +1174,7 @@ const rawQuestions = [
       "50%",
       "65%"
     ],
-    "answer": "30%"
+    "answer": "65%"
   },
   {
     "id": 108,
@@ -1185,7 +1185,7 @@ const rawQuestions = [
       "Unity",
       "Ribbons of steel"
     ],
-    "answer": "Easy access to the West Coast"
+    "answer": "Unity"
   },
   {
     "id": 109,
@@ -1218,7 +1218,7 @@ const rawQuestions = [
       "Alfred Boyd",
       "Louis Riel"
     ],
-    "answer": "Sam Steele"
+    "answer": "Louis Riel"
   },
   {
     "id": 112,
@@ -1361,7 +1361,7 @@ const rawQuestions = [
       "It was the \"hinge\" of the German line as it protected the newly constructed Hindenburg line",
       "Once Canadians fought at Vimy they knew they would be heading home"
     ],
-    "answer": "It was the \"hinge\" of the German line as it protected the newly constructed Hindenburg line"
+    "answer": "Canadian Corps secured its reputation for valour and bravery"
   },
   {
     "id": 125,
@@ -1383,7 +1383,7 @@ const rawQuestions = [
       "British Columbia",
       "Manitoba"
     ],
-    "answer": "British Columbia"
+    "answer": "Quebec"
   },
   {
     "id": 127,
@@ -1405,7 +1405,7 @@ const rawQuestions = [
       "Sir Wilfrid Laurier",
       "Sir John A. Macdonald"
     ],
-    "answer": "Sir Louis-Hippolyte La Fontaine"
+    "answer": "Sir George-Étienne Cartier"
   },
   {
     "id": 129,
@@ -1515,7 +1515,7 @@ const rawQuestions = [
       "1949",
       "1880"
     ],
-    "answer": "1955"
+    "answer": "1949"
   },
   {
     "id": 139,
@@ -1603,7 +1603,7 @@ const rawQuestions = [
       "Sam Steele",
       "George-Étienne Cartier"
     ],
-    "answer": "George-Étienne Cartier"
+    "answer": "Louis Riel"
   },
   // {
   //   "id": 147,
