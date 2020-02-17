@@ -12,9 +12,24 @@ const Results = ({ questions, answers, restart }) => {
     })
   }
 
+  const renderResultsPercentage = () => {
+    // return # of correct answers
+    const totalCorrect = answers.reduce((acc, curr, i) => {
+      const question = questions[i]
+      return question.answer === curr.answer ? acc + 1 : acc
+    }, 0)
+
+    const percentage = (totalCorrect / questions.length) * 100;
+
+    return (
+      <div>Score: {percentage}%</div>
+    )
+  }
+
   return (
     <>
       <h2>Results</h2>
+      <ul>{renderResultsPercentage()}</ul>
       <ul>{renderResultsData()}</ul>
       <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
     </>

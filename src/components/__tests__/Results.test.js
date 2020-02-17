@@ -15,4 +15,14 @@ describe('Results components', () => {
     expect(container.innerHTML).toMatch(/correct/i)
     expect(container.innerHTML).toMatch(/restart/)
   })
+
+  it('renders results with 100% percentage correct', () => {
+    const props = {
+      questions,
+      answers: [{ id: 1, answer: "The first people to live in Canada" }, { id: 2, answer: "First Nations, Métis and Inuit" }],
+      restart: () => { }
+    }
+    const { container } = render(<Results {...props} />)
+    expect(container.innerHTML).toMatch(/%/i)
+  })
 })
