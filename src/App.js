@@ -61,7 +61,7 @@ function App({ questions }) {
       <div className="container">
         <h2>Results</h2>
         <ul>{renderResultsData()}</ul>
-        <button className="btn btn-primary" onClick={restart}>Restart</button>
+        <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
       </div>
     )
   }
