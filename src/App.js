@@ -3,6 +3,7 @@ import './App.css'
 import Progress from './components/Progress'
 import Question from './components/Question'
 import Answers from './components/Answers'
+import Results from './components/Results'
 
 function App({ questions }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -29,26 +30,6 @@ function App({ questions }) {
     }
   }
 
-  const renderResultMark = (question, answer) => {
-    if (question.answer == answer.answer) {
-      return <span className="correct">Correct</span>
-    } else {
-      return <span className="failed">Incorrect</span>
-    }
-  }
-
-  const renderResultsData = () => {
-    return answers.map(answer => {
-      const question = questions.find(question => question.id === answer.id)
-
-      return (
-        <div key={question.id}>
-          {question.question} - {renderResultMark(question, answer)}
-        </div>
-      )
-    })
-  }
-
   const restart = () => {
     setAnswers([])
     setCurrentAnswer('')
@@ -56,22 +37,19 @@ function App({ questions }) {
     setShowResults(false)
   }
 
-  if (showResults) {
-    return (
-      <div className="container">
-        <h2>Results</h2>
-        <ul>{renderResultsData()}</ul>
-        <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
-      </div>
-    )
-  }
-
   return (
     <div className="container">
-      <Progress total={questions.length} current={currentQuestion + 1}></Progress>
-      <Question question={question.question}></Question>
-      <Answers options={question.options} currentAnswer={currentAnswer} handleClick={handleClick}></Answers>
-      <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
+      {
+        showResults ?
+          <Results questions={questions} answers={answers} restart={restart} />
+          :
+          <>
+            <Progress total={questions.length} current={currentQuestion + 1}></Progress>
+            <Question question={question.question}></Question>
+            <Answers options={question.options} currentAnswer={currentAnswer} handleClick={handleClick}></Answers>
+            <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
+          </>
+      }
     </div>
   )
 }
