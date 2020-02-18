@@ -5,11 +5,8 @@ import Question from './components/Question'
 import Answers from './components/Answers'
 import Results from './components/Results'
 
-const SET_CURRENT_ANSWER = 'SET_CURRENT_ANSWER'
-const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION'
-const SET_SHOW_RESULTS = 'SET_SHOW_RESULTS'
-const SET_ANSWERS = 'SET_ANSWERS'
-const RESET = 'RESET'
+import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS, RESET } from './reducers/types'
+
 function quizReducer(state, { type, payload }) {
   switch (type) {
     case SET_CURRENT_ANSWER:
@@ -57,7 +54,6 @@ function App({ questions }) {
   const { currentQuestion, currentAnswer, answers, showResults } = state
   const question = questions[currentQuestion]
 
-  const handleClick = e => dispatch({ type: SET_CURRENT_ANSWER, payload: e.target.value })
   const next = () => {
     if (!currentAnswer) return false
     const answer = { id: question.id, answer: currentAnswer }
@@ -86,7 +82,7 @@ function App({ questions }) {
           <>
             <Progress total={questions.length} current={currentQuestion + 1}></Progress>
             <Question question={question.question}></Question>
-            <Answers options={question.options} currentAnswer={currentAnswer} handleClick={handleClick}></Answers>
+            <Answers options={question.options} currentAnswer={currentAnswer} dispatch={dispatch}></Answers>
             <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
           </>
       }
