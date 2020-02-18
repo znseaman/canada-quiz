@@ -1,7 +1,7 @@
 import React from 'react'
 import Result from '../components/Result'
 
-const Results = ({ questions, answers, restart }) => {
+const Results = ({ questions, answers }) => {
   const renderResultsData = () => {
     return answers.map(answer => {
       const question = questions.find(question => question.id === answer.id)
@@ -31,7 +31,6 @@ const Results = ({ questions, answers, restart }) => {
       <h2>Results</h2>
       <ul>{renderResultsPercentage()}</ul>
       <ul>{renderResultsData()}</ul>
-      <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
     </>
   )
 }

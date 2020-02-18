@@ -1,47 +1,87 @@
-import React, { useState } from 'react'
+import React, { useState, useReducer } from 'react'
 import './App.css'
 import Progress from './components/Progress'
 import Question from './components/Question'
 import Answers from './components/Answers'
 import Results from './components/Results'
 
+const SET_CURRENT_ANSWER = 'SET_CURRENT_ANSWER'
+const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION'
+const SET_SHOW_RESULTS = 'SET_SHOW_RESULTS'
+const SET_ANSWERS = 'SET_ANSWERS'
+const RESET = 'RESET'
+function quizReducer(state, { type, payload }) {
+  switch (type) {
+    case SET_CURRENT_ANSWER:
+      return {
+        ...state,
+        currentAnswer: payload
+      }
+    case SET_ANSWERS:
+      return {
+        ...state,
+        answers: payload
+      }
+    case SET_CURRENT_QUESTION:
+      return {
+        ...state,
+        currentQuestion: payload
+      }
+    case SET_SHOW_RESULTS:
+      return {
+        ...state,
+        showResults: payload
+      }
+    case RESET:
+      return {
+        ...state,
+        answers: [],
+        currentAnswer: '',
+        currentQuestion: 0,
+        showResults: false
+      }
+    default:
+      return state
+  }
+}
+
 function App({ questions }) {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [currentAnswer, setCurrentAnswer] = useState('')
-  const [answers, setAnswers] = useState([])
-  const [showResults, setShowResults] = useState(false)
+  const initialState = {
+    currentQuestion: 0,
+    currentAnswer: '',
+    answers: [],
+    showResults: false
+  }
+
+  const [state, dispatch] = useReducer(quizReducer, initialState)
+  const { currentQuestion, currentAnswer, answers, showResults } = state
   const question = questions[currentQuestion]
 
-  const handleClick = e => setCurrentAnswer(e.target.value)
+  const handleClick = e => dispatch({ type: SET_CURRENT_ANSWER, payload: e.target.value })
   const next = () => {
     if (!currentAnswer) return false
     const answer = { id: question.id, answer: currentAnswer }
-    setAnswers([
-      ...answers,
-      answer
-    ])
+    dispatch({ type: SET_ANSWERS, payload: [...answers, answer] })
 
-    setCurrentAnswer('')
+    dispatch({ type: SET_CURRENT_ANSWER, payload: '' })
 
     if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion(currentQuestion + 1)
+      dispatch({ type: SET_CURRENT_QUESTION, payload: currentQuestion + 1 })
     } else {
-      setShowResults(true)
+      dispatch({ type: SET_SHOW_RESULTS, payload: true })
     }
   }
 
-  const restart = () => {
-    setAnswers([])
-    setCurrentAnswer('')
-    setCurrentQuestion(0)
-    setShowResults(false)
-  }
+  const restart = () => dispatch({ type: RESET })
 
   return (
     <div className="container">
       {
         showResults ?
-          <Results questions={questions} answers={answers} restart={restart} />
+          <>
+            <Results questions={questions} answers={answers} />
+            <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
+          </>
           :
           <>
             <Progress total={questions.length} current={currentQuestion + 1}></Progress>
