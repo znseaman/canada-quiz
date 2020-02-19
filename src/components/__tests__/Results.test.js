@@ -1,28 +1,26 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render } from '../../tests/test-utils'
 import Results from '../Results'
-import questions from '../../data/rawQuestions'
+import initialState from '../../context/initialState'
 
 describe('Results components', () => {
   it('renders without errors', () => {
-    const props = {
-      questions,
-      answers: [{ id: 1, answer: 'Interesting' }, { id: 2, answer: 'Cool' }],
-      restart: () => { }
-    }
-    const { container } = render(<Results {...props} />)
-    expect(container.innerHTML).toMatch(/result/i)
-    expect(container.innerHTML).toMatch(/correct/i)
-    expect(container.innerHTML).toMatch(/restart/)
+    const questions = initialState.questions.slice(0, 2)
+    const answers = [{ id: 1, answer: 'Interesting' }, { id: 2, answer: 'Cool' }]
+    const initState = { ...initialState, questions, answers }
+    const { getByText, getAllByText } = render(<Results />, { initState })
+
+    expect(getByText(/result/i)).toBeInTheDocument()
+    expect(getAllByText(/correct/i).length).toBe(2)
+    expect(getByText(/restart/i)).toBeInTheDocument()
   })
 
   it('renders results with 100% percentage correct', () => {
-    const props = {
-      questions,
-      answers: [{ id: 1, answer: "The first people to live in Canada" }, { id: 2, answer: "First Nations, Métis and Inuit" }],
-      restart: () => { }
-    }
-    const { container } = render(<Results {...props} />)
-    expect(container.innerHTML).toMatch(/%/i)
+    const questions = initialState.questions.slice(0, 2)
+    const answers = [{ id: 1, answer: "The first people to live in Canada" }, { id: 2, answer: "First Nations, Métis and Inuit" }]
+    const initState = { ...initialState, questions, answers }
+    const { getByText } = render(<Results />, { initState })
+
+    expect(getByText(/100%/i)).toBeInTheDocument()
   })
 })

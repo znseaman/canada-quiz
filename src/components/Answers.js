@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Answer from './Answer'
-
-import QuizContext from '../context/QuizContext'
+import { useStore } from '../context/Provider'
 
 const Answers = () => {
-  const { state, dispatch } = useContext(QuizContext)
-  const { currentAnswer, currentQuestion, questions } = state;
+  const { state, dispatch } = useStore()
+  const { currentAnswer, currentQuestion, questions } = state
   const { options } = questions[currentQuestion]
 
   return (

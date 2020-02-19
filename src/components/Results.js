@@ -1,7 +1,11 @@
 import React from 'react'
 import Result from '../components/Result'
+import { RESET } from '../reducers/types'
+import { useStore } from '../context/Provider'
 
-const Results = ({ questions, answers, restart }) => {
+const Results = () => {
+  const { state, dispatch } = useStore()
+  const { questions, answers } = state
   const renderResultsData = () => {
     return answers.map(answer => {
       const question = questions.find(question => question.id === answer.id)
@@ -25,6 +29,8 @@ const Results = ({ questions, answers, restart }) => {
       <div>Score: {percentage}%</div>
     )
   }
+
+  const restart = () => dispatch({ type: RESET })
 
   return (
     <>
