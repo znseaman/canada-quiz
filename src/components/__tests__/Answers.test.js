@@ -1,18 +1,7 @@
-import React, { useReducer } from 'react'
-import { render as rtlRender } from '@testing-library/react'
+import React from 'react'
+import { render } from '../../tests/test-utils'
 import Answers from '../Answers'
-import QuizContext from '../../context/QuizContext'
 import initialState from '../../context/initialState'
-import quizReducer from '../../reducers/QuizReducer'
-
-function render(ui, { initState = initialState } = {}) {
-  function Wrapper(props) {
-    const [state, dispatch] = useReducer(quizReducer, initState)
-
-    return <QuizContext.Provider value={{ state, dispatch }} {...props} />
-  }
-  return rtlRender(ui, { wrapper: Wrapper })
-}
 
 describe('Answers component', () => {
   it('renders 4 answers', () => {
