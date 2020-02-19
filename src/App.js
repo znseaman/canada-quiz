@@ -4,46 +4,14 @@ import Progress from './components/Progress'
 import Question from './components/Question'
 import Answers from './components/Answers'
 import Results from './components/Results'
+import QuizContext from './context/QuizContext'
 
 import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS, RESET } from './reducers/types'
-
-function quizReducer(state, { type, payload }) {
-  switch (type) {
-    case SET_CURRENT_ANSWER:
-      return {
-        ...state,
-        currentAnswer: payload
-      }
-    case SET_ANSWERS:
-      return {
-        ...state,
-        answers: payload
-      }
-    case SET_CURRENT_QUESTION:
-      return {
-        ...state,
-        currentQuestion: payload
-      }
-    case SET_SHOW_RESULTS:
-      return {
-        ...state,
-        showResults: payload
-      }
-    case RESET:
-      return {
-        ...state,
-        answers: [],
-        currentAnswer: '',
-        currentQuestion: 0,
-        showResults: false
-      }
-    default:
-      return state
-  }
-}
+import quizReducer from './reducers/QuizReducer'
 
 function App({ questions }) {
   const initialState = {
+    questions,
     currentQuestion: 0,
     currentAnswer: '',
     answers: [],
@@ -71,22 +39,24 @@ function App({ questions }) {
   const restart = () => dispatch({ type: RESET })
 
   return (
-    <div className="container">
-      {
-        showResults ?
-          <>
-            <Results questions={questions} answers={answers} />
-            <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
-          </>
-          :
-          <>
-            <Progress total={questions.length} current={currentQuestion + 1}></Progress>
-            <Question question={question.question}></Question>
-            <Answers options={question.options} currentAnswer={currentAnswer} dispatch={dispatch}></Answers>
-            <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
-          </>
-      }
-    </div>
+    <QuizContext.Provider value={{ state, dispatch }}>
+      <div className="container">
+        {
+          showResults ?
+            <>
+              <Results questions={questions} answers={answers} />
+              <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
+            </>
+            :
+            <>
+              <Progress total={questions.length} current={currentQuestion + 1}></Progress>
+              <Question question={question.question}></Question>
+              <Answers />
+              <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
+            </>
+        }
+      </div>
+    </QuizContext.Provider>
   )
 }
 
