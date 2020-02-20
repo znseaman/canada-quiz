@@ -26,19 +26,19 @@ const Results = () => {
     const percentage = (totalCorrect / questions.length) * 100;
 
     return (
-      <div>Score: {percentage}%</div>
+      <h1>Score: {percentage}%</h1>
     )
   }
 
   const restart = () => dispatch({ type: RESET })
 
   return (
-    <>
+    <div className="results">
       <h2>Results</h2>
-      <ul>{renderResultsPercentage()}</ul>
-      <ul>{renderResultsData()}</ul>
+      {renderResultsPercentage()}
+      {renderResultsData()}
       <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
-    </>
+    </div>
   )
 }
 
