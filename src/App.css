@@ -42,15 +42,17 @@ h2 {
 }
 
 .results span.correct {
-  color: #c8ffbb;
+  color: #86e86f;
+  font-weight: bold;
 }
 
 .results span.failed {
-  color: #f27c7c;
+  color: #f74b4b;
+  font-weight: bold;
 }
 
 .error {
-  color: #f27c7c;
+  color: #f74b4b;
 }
 
 .letter {
