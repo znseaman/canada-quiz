@@ -23,7 +23,7 @@ const Results = () => {
       return question.answer === curr.answer ? acc + 1 : acc
     }, 0)
 
-    const percentage = (totalCorrect / questions.length) * 100;
+    const percentage = Math.round((totalCorrect / questions.length) * 100);
 
     return (
       <h1>Score: {percentage}%</h1>
