@@ -8,11 +8,12 @@ describe('Results components', () => {
     const questions = initialState.questions.slice(0, 2)
     const answers = [{ id: 1, answer: 'Interesting' }, { id: 2, answer: 'Cool' }]
     const initState = { ...initialState, questions, answers }
-    const { getByText, getAllByText } = render(<Results />, { initState })
+    const { getByText, getAllByTestId } = render(<Results />, { initState })
 
-    expect(getByText(/result/i)).toBeInTheDocument()
-    expect(getAllByText(/correct/i).length).toBe(2)
-    expect(getByText(/restart/i)).toBeInTheDocument()
+    expect(getByText(/result/i)).toBeTruthy()
+    expect(getAllByTestId(/correct-answer/i).length).toBe(2)
+    expect(getAllByTestId(/given-answer/i).length).toBe(2)
+    expect(getByText(/restart/i)).toBeTruthy()
   })
 
   it('renders results with 100% percentage correct', () => {

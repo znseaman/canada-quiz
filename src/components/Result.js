@@ -9,10 +9,10 @@ const Result = ({ question, answer }) => {
             <h3 data-testid="given-question">{question.id}. {question.question}</h3>
           </div>
           <div>
-            <span className="correct">{question.answer}</span>
+            <span className="correct" data-testid="correct-answer">{question.answer}</span>
           </div >
           <div>
-            <span className="failed">{answer.answer}</span>
+            <span className="failed" data-testid="given-answer">{answer.answer}</span>
           </div >
         </>
       )
