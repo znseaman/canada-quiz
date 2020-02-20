@@ -11,10 +11,10 @@ import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS
 function App() {
   const { state, dispatch } = useStore()
   const { currentQuestion, currentAnswer, answers, showResults, questions } = state
-  const question = questions[currentQuestion]
 
   const next = () => {
     if (!currentAnswer) return false
+    const question = questions[currentQuestion]
     const answer = { id: question.id, answer: currentAnswer }
     dispatch({ type: SET_ANSWERS, payload: [...answers, answer] })
 
@@ -35,7 +35,7 @@ function App() {
           :
           <>
             <Progress total={questions.length} current={currentQuestion + 1}></Progress>
-            <Question question={question.question}></Question>
+            <Question question={questions[currentQuestion].question}></Question>
             <Answers />
             <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
           </>
