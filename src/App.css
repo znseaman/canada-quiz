@@ -27,14 +27,32 @@ h2 {
   transition: ease-in-out, width 0.35s ease-in-out;
 }
 
-.answer.selected {
+.answer.selected.correct,
+.answer.not-selected.correct {
+  color: rgb(0, 0, 0);
+  background-color: #86e86f;
+}
+
+.answer.selected.incorrect {
+  color: rgb(0, 0, 0);
+  background-color: #f74b4b;
+}
+
+.answer[disabled]{
+  background-color: transparent;
+  border: transparent;
+  color: transparent;
+  cursor: default;
+}
+
+.answer:not(disabled):hover {
   color: #4f4c4c;
   background-color: #86e86f;
 }
 
-.answer:hover {
-  color: #4f4c4c;
-  background-color: #86e86f;
+.answer[disabled]:not(.selected):not(.not-selected):hover {
+  color: transparent;
+  background-color: transparent;
 }
 
 .answer:focus {
