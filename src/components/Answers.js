@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Answer from './Answer'
 import { useStore } from '../context/Provider'
+import shuffle from '../utils/shuffle'
 
 const Answers = () => {
   const { state, dispatch } = useStore()
   const { currentAnswer, currentQuestion, questions } = state
   const { options, answer: correctAnswer } = questions[currentQuestion]
 
+  const [shuffledOptions, setShuffledOptions] = useState([])
+
+  useEffect(() => {
+    if (!currentAnswer) setShuffledOptions(shuffle(options))
+  }, [currentAnswer, options])
+
   return (
     <>
       {
-        options.map((option, i) => (
+        shuffledOptions.map((option, i) => (
           <Answer key={i} number={i + 1} answer={option} selected={currentAnswer == option} dispatch={dispatch} correctAnswer={correctAnswer} currentAnswer={currentAnswer} isCorrect={currentAnswer == correctAnswer}></Answer>
         ))
       }
