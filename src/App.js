@@ -37,7 +37,7 @@ function App() {
             <Progress total={questions.length} current={currentQuestion + 1}></Progress>
             <Question question={questions[currentQuestion].question}></Question>
             <Answers />
-            <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Confirm and Continue</button>
+            <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Next</button>
           </>
       }
     </div>
