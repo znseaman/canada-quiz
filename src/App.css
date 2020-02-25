@@ -25,15 +25,18 @@ h2 {
   font-size: 22px;
   cursor: pointer;
   transition: ease-in-out, width 0.35s ease-in-out;
+  border-radius: .5em;
 }
 
 .answer.selected.correct,
 .answer.not-selected.correct {
+  border: 1px solid #fff;
   color: rgb(0, 0, 0);
   background-color: #86e86f;
 }
 
 .answer.selected.incorrect {
+  border: 1px solid #fff;
   color: rgb(0, 0, 0);
   background-color: #f74b4b;
 }
@@ -93,6 +96,7 @@ h2 {
   font-size: 18px;
   margin-top: 20px;
   cursor: pointer;
+  border-radius: .5em;
 }
 
 .btn-primary {
