@@ -20,7 +20,7 @@ describe('App component', () => {
     rerender(<App />)
 
     expect(container.innerHTML).toMatch(/result/i)
-    expect(container.innerHTML).toMatch(/correct/i)
+    expect(container.innerHTML).toMatch(/\d+%/i)
     expect(container.innerHTML).toMatch(/restart/)
   })
 

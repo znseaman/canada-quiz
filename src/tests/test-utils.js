@@ -2,8 +2,9 @@ import React from 'react'
 import { render } from '@testing-library/react'
 
 import { Provider } from '../context/Provider'
+import initialState from '../context/initialState'
 
-function customRender(ui, { initState } = {}) {
+function customRender(ui, { initState = initialState } = {}) {
   function Wrapper(props) {
     return <Provider initState={initState} {...props} />
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '../../tests/test-utils'
+import { render, fireEvent } from '../../tests/test-utils'
 import Answers from '../Answers'
 import initialState from '../../context/initialState'
 
@@ -22,34 +22,42 @@ describe('Answers component', () => {
     expect(container.innerHTML).not.toMatch(`selected`)
   })
 
-  it('renders answers with filled currentAnswer', () => {
-    const { container } = render(<Answers />, { initState: { ...initialState, currentAnswer: 'The first people to live in Canada' } })
-
-    // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`selected`)
-  })
-
   it('renders answers with selected correct currentAnswer', () => {
-    const { container } = render(<Answers />, { initState: { ...initialState, currentAnswer: 'The first people to live in Canada' } })
+    const question = initialState.questions[0]
+    const givenAnswer = question.answer
+    const { getByText, rerender } = render(<Answers />)
 
-    // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`selected`)
-    expect(container.innerHTML).toMatch(`correct`)
+    const currentAnswer = getByText(givenAnswer)
+    fireEvent.click(currentAnswer)
+
+    rerender(<Answers />)
+
+    expect(currentAnswer.textContent).toBe(givenAnswer)
+    expect(Array.from(currentAnswer.classList)).toContain('answer')
+    expect(Array.from(currentAnswer.classList)).toContain('selected')
+    expect(Array.from(currentAnswer.classList)).toContain('correct')
   })
 
   it('renders answers with selected incorrect currentAnswer', () => {
-    const initState = { ...initialState, currentAnswer: 'The descendents of the first Australian immigrants to Canada' }
-    const { getByText, container } = render(<Answers />, { initState })
+    const question = initialState.questions[0]
+    const { answer } = question
+    const givenAnswer = question.options.find(opt => opt != answer)
+    const { getByText, rerender, container } = render(<Answers />)
 
-    const incorrectAnswer = getByText(initState.currentAnswer)
-    expect(incorrectAnswer.innerHTML).toBe(initState.currentAnswer)
+    const currentAnswer = getByText(givenAnswer)
+    fireEvent.click(currentAnswer)
 
-    const question = initState.questions[initState.currentQuestion]
-    const correctAnswer = getByText(question.answer)
-    expect(correctAnswer.innerHTML).toBe(question.answer)
+    rerender(<Answers />)
 
-    // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`selected`)
-    expect(container.innerHTML).toMatch(`incorrect`)
+    expect(currentAnswer.textContent).toBe(givenAnswer)
+    expect(Array.from(currentAnswer.classList)).toContain('answer')
+    expect(Array.from(currentAnswer.classList)).toContain('selected')
+    expect(Array.from(currentAnswer.classList)).toContain('incorrect')
+
+    const correctAnswer = getByText(answer)
+    expect(correctAnswer.textContent).toBe(answer)
+    expect(Array.from(correctAnswer.classList)).toContain('answer')
+    expect(Array.from(correctAnswer.classList)).toContain('not-selected')
+    expect(Array.from(correctAnswer.classList)).toContain('correct')
   })
 })
