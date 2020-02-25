@@ -11,6 +11,7 @@ const Answer = ({ number, answer, selected, dispatch, isCorrect, currentAnswer, 
   }
   else {
     // highlight the correct answer
+    // eslint-disable-next-line eqeqeq
     if (currentAnswer && correctAnswer == answer) {
       classes.push('not-selected')
       classes.push('correct')

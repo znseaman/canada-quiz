@@ -18,6 +18,7 @@ const Answers = () => {
     <>
       {
         shuffledOptions.map((option, i) => (
+          // eslint-disable-next-line eqeqeq
           <Answer key={i} number={i + 1} answer={option} selected={currentAnswer == option} dispatch={dispatch} correctAnswer={correctAnswer} currentAnswer={currentAnswer} isCorrect={currentAnswer == correctAnswer}></Answer>
         ))
       }

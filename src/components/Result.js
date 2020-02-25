@@ -2,6 +2,7 @@ import React from 'react'
 
 const Result = ({ question, answer }) => {
   const renderResultMark = (question, answer) => {
+    // eslint-disable-next-line eqeqeq
     if (question.answer != answer.answer) {
       return (
         <>
