@@ -5,7 +5,8 @@ const initialState = {
   currentQuestion: 0,
   currentAnswer: '',
   answers: [],
-  showResults: false
+  showResults: false,
+  isStarted: false
 }
 
 export default initialState;

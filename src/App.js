@@ -6,11 +6,11 @@ import Answers from './components/Answers'
 import Results from './components/Results'
 import { useStore } from './context/Provider'
 
-import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS } from './reducers/types'
+import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS, START } from './reducers/types'
 
 function App() {
   const { state, dispatch } = useStore()
-  const { currentQuestion, currentAnswer, answers, showResults, questions } = state
+  const { currentQuestion, currentAnswer, answers, showResults, questions, isStarted } = state
 
   const next = () => {
     if (!currentAnswer) return false
@@ -27,18 +27,26 @@ function App() {
     }
   }
 
+  const start = () => dispatch({ type: START })
+
   return (
     <div className="container">
       {
-        showResults ?
-          <Results />
-          :
+        !isStarted ?
           <>
-            <Progress total={questions.length} current={currentQuestion + 1}></Progress>
-            <Question question={questions[currentQuestion].question}></Question>
-            <Answers />
-            <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Next</button>
+            <h1>Canadian Citizenship Quiz</h1>
+            <button data-testid="start" className="btn btn-primary" onClick={start}>start</button>
           </>
+          :
+          showResults ?
+            <Results />
+            :
+            <>
+              <Progress total={questions.length} current={currentQuestion + 1}></Progress>
+              <Question question={questions[currentQuestion].question}></Question>
+              <Answers />
+              <button data-testid="next" className="btn btn-primary" style={{ visibility: currentAnswer ? 'visible' : 'hidden' }} onClick={next}>Next</button>
+            </>
       }
     </div>
   )

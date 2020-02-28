@@ -1,4 +1,4 @@
-import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS, RESET } from './types'
+import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS, RESET, START } from './types'
 
 function quizReducer(state, { type, payload }) {
   switch (type) {
@@ -28,7 +28,13 @@ function quizReducer(state, { type, payload }) {
         answers: [],
         currentAnswer: '',
         currentQuestion: 0,
-        showResults: false
+        showResults: false,
+        isStarted: false
+      }
+    case START:
+      return {
+        ...state,
+        isStarted: true
       }
     default:
       return state

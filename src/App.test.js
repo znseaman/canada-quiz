@@ -6,7 +6,7 @@ import initialState from './context/initialState'
 describe('App component', () => {
   it('renders without errors', async () => {
     const { container } = render(<App />)
-    expect(container.innerHTML).toMatch('Question')
+    expect(container.innerHTML).toMatch('Quiz')
   })
 
   // @TODO: taking over 6s to complete, speed up
@@ -15,6 +15,7 @@ describe('App component', () => {
     const initState = { ...initialState, questions }
     const { container, getByTestId, rerender } = render(<App />, { initState })
 
+    fireEvent.click(getByTestId('start'))
     fireEvent.click(getByTestId('option1'))
     fireEvent.click(getByTestId('next'))
     rerender(<App />)
@@ -27,8 +28,9 @@ describe('App component', () => {
   it('resets after arriving to the Results page', async () => {
     const questions = initialState.questions.slice(0, 1)
     const initState = { ...initialState, questions }
-    const { container, getByTestId, rerender } = render(<App />, { initState })
+    const { getByTestId, rerender } = render(<App />, { initState })
 
+    fireEvent.click(getByTestId('start'))
     fireEvent.click(getByTestId('option1'))
     fireEvent.click(getByTestId('next'))
     rerender(<App />)
@@ -36,7 +38,7 @@ describe('App component', () => {
     fireEvent.click(getByTestId('restart'))
     rerender(<App />)
 
-    expect(container.innerHTML).toMatch('Question 1')
+    expect(getByTestId('start')).toBeInTheDocument()
   })
 
   it('displays 2nd question', async () => {
@@ -44,6 +46,7 @@ describe('App component', () => {
     const initState = { ...initialState, questions }
     const { container, getByTestId, rerender } = render(<App />, { initState })
 
+    fireEvent.click(getByTestId('start'))
     fireEvent.click(getByTestId('option1'))
     fireEvent.click(getByTestId('next'))
     rerender(<App />)
