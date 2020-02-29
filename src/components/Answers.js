@@ -4,7 +4,7 @@ import { useStore } from '../context/Provider'
 import shuffle from '../utils/shuffle'
 
 const Answers = () => {
-  const { state, dispatch } = useStore()
+  const { state, setCurrentAnswer } = useStore()
   const { currentAnswer, currentQuestion, questions } = state
   const { options, answer: correctAnswer } = questions[currentQuestion]
 
@@ -19,7 +19,7 @@ const Answers = () => {
       {
         shuffledOptions.map((option, i) => (
           // eslint-disable-next-line eqeqeq
-          <Answer key={i} number={i + 1} answer={option} selected={currentAnswer == option} dispatch={dispatch} correctAnswer={correctAnswer} currentAnswer={currentAnswer} isCorrect={currentAnswer == correctAnswer}></Answer>
+          <Answer key={i} number={i + 1} answer={option} selected={currentAnswer == option} setCurrentAnswer={setCurrentAnswer} correctAnswer={correctAnswer} currentAnswer={currentAnswer} isCorrect={currentAnswer == correctAnswer} ></Answer>
         ))
       }
     </>
