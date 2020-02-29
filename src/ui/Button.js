@@ -1,11 +1,10 @@
+import React from 'react'
 import styled from 'styled-components'
-
-const gold = '#4f4c4c';
 
 const Button = styled.button`
   /* .btn */
-  color: ${gold};
-  background-color: #f4f4f4;
+  color: ${props => props.primary};
+  /* background-color: #f4f4f4; */
   padding: 10px 50px;
   text-transform: uppercase;
   font-size: 18px;
@@ -14,20 +13,23 @@ const Button = styled.button`
   border-radius: .5em;
 
   /* .btn-primary */
-  color: ${gold};
-  background-color: #ffc107;
+  color: ${props => props.primary};
+  background-color: ${props => props.secondary};
   font-weight: bold;
   
   :active,
   :focus{
     outline: none;
-    box-shadow: 0px 2px 50px 13px rgba(235,196,117,1);
+    box-shadow: ${props => `0px 2px 50px 13px ${props.halo}`};
   }
 
   :hover{
-    box-shadow: 0px 2px 50px 13px rgba(235,196,117,1);
-}
+    box-shadow: ${props => `0px 2px 50px 13px ${props.halo}`};
   }
 `
 
-export default Button
+const ForwardRef = React.forwardRef((props, ref) => {
+  return <Button ref={ref} {...props}></Button>
+})
+
+export default ForwardRef

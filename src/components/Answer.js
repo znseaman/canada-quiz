@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../ui/Button'
 
 const Answer = ({ number, answer, selected, setCurrentAnswer, isCorrect, currentAnswer, correctAnswer }) => {
   let classes = ['answer']
@@ -18,9 +19,9 @@ const Answer = ({ number, answer, selected, setCurrentAnswer, isCorrect, current
   }
 
   return (
-    <button data-testid={`option${number}`} value={answer} className={classes.join(' ')} disabled={currentAnswer} onClick={setCurrentAnswer}>
+    <Button data-testid={`option${number}`} value={answer} className={classes.join(' ')} disabled={currentAnswer} primary={'#4f4c4c'} secondary={'#fff'} onClick={setCurrentAnswer}>
       {answer}
-    </button>
+    </Button>
   )
 }
 

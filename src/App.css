@@ -48,7 +48,9 @@ h2 {
   cursor: default;
 }
 
-.answer:not(disabled):hover {
+.answer:not(disabled):hover,
+.answer:not(disabled):active,
+.answer:not(disabled):focus {
   color: #4f4c4c;
   background-color: #86e86f;
 }
@@ -58,9 +60,9 @@ h2 {
   background-color: transparent;
 }
 
-.answer:focus {
+/* .answer:focus {
   outline: none;
-}
+} */
 
 .results span.correct {
   color: #86e86f;

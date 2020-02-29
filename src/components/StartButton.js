@@ -8,6 +8,6 @@ export default function () {
 
   return (
     <Button data-testid="start"
-      onClick={start}>Start</Button>
+      onClick={start} primary={'#4f4c4c'} secondary={'#ffc107'} halo={'rgba(235, 196, 117, 1)'}>Start</Button>
   )
 }

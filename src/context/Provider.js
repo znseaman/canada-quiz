@@ -35,7 +35,9 @@ const Provider = ({ initState = initialState, ...props } = {}) => {
     }
   }
 
-  const setCurrentAnswer = e => dispatch({ type: SET_CURRENT_ANSWER, payload: e.target.value })
+  const setCurrentAnswer = e => {
+    dispatch({ type: SET_CURRENT_ANSWER, payload: e.target.value })
+  }
 
   return <QuizContext.Provider value={{ state, dispatch, start, next, setCurrentAnswer }} {...props} />
 }
