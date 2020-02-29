@@ -71,19 +71,3 @@ h2 {
   color: #f74b4b;
   font-weight: bold;
 }
-
-.error {
-  color: #f74b4b;
-}
-
-.letter {
-  color: #4f4c4c;
-  width: 30px;
-  position: absolute;
-  left: 0;
-  text-align: center;
-  height: 28px;
-  top: 0;
-  padding: 5px;
-  text-transform: uppercase;
-}
