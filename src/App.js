@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import './App.css'
 import Progress from './components/Progress'
 import Question from './components/Question'
@@ -12,8 +12,13 @@ function App() {
   const { state } = useStore()
   const { currentQuestion, showResults, questions, isStarted } = state
 
+  const containerRef = useRef(null)
+  useEffect(() => {
+    containerRef.current.focus()
+  }, [currentQuestion])
+
   return (
-    <div className="container">
+    <div className="container" tabIndex={"0"} ref={containerRef}>
       {
         !isStarted ?
           <>
