@@ -28,7 +28,7 @@ describe('Answer component', () => {
     expect(answer.innerHTML).toMatch(localProps.answer)
 
     // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`class="answer`)
+    expect(container.innerHTML).toMatch(/answer/)
     expect(container.innerHTML).not.toMatch(`selected`)
   })
 
@@ -45,7 +45,7 @@ describe('Answer component', () => {
     expect(container.innerHTML).toMatch(`value="${localProps.answer}"`)
 
     // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`class="answer selected`)
+    expect(container.innerHTML).toMatch(/answer selected/)
   })
 
   it('renders component as selected and correct', () => {
@@ -61,7 +61,7 @@ describe('Answer component', () => {
     expect(container.innerHTML).toMatch(`value="${localProps.answer}"`)
 
     // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`class="answer selected correct`)
+    expect(container.innerHTML).toMatch(/answer selected correct/)
   })
 
   it('renders component as correct but was not selected by user', () => {
@@ -75,7 +75,7 @@ describe('Answer component', () => {
     expect(container.innerHTML).toMatch(`value="${props.answer}"`)
 
     // @TODO: find a more efficient way to check the classes
-    expect(container.innerHTML).toMatch(`class="answer not-selected correct`)
+    expect(container.innerHTML).toMatch(/answer not-selected correct/)
   })
 
   // @TODO: mock test clicking the answer
