@@ -79,3 +79,11 @@ h2 {
   color: var(--incorrect-color);
   font-weight: bold;
 }
+
+.seconds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 80px;
+  padding: 20px;
+}
