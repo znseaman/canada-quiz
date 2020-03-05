@@ -19,7 +19,7 @@ const Answer = ({ number, answer, selected, setCurrentAnswer, isCorrect, current
   }
 
   return (
-    <Button data-testid={`option${number}`} value={answer} className={classes.join(' ')} disabled={currentAnswer} primary={'#4f4c4c'} secondary={'#fff'} onClick={setCurrentAnswer}>
+    <Button data-testid={`option${number}`} value={answer} className={classes.join(' ')} disabled={currentAnswer} primary={'#fff'} secondary={'transparent'} onClick={setCurrentAnswer}>
       {answer}
     </Button>
   )

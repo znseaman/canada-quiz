@@ -2,6 +2,7 @@ import React from 'react'
 import Result from '../components/Result'
 import { RESET } from '../reducers/types'
 import { useStore } from '../context/Provider'
+import Button from '../ui/Button'
 
 const Results = () => {
   const { state, dispatch } = useStore()
@@ -37,7 +38,7 @@ const Results = () => {
       <h2>Results</h2>
       {renderResultsPercentage()}
       {renderResultsData()}
-      <button data-testid="restart" className="btn btn-primary" onClick={restart}>Restart</button>
+      <Button data-testid="restart" className="btn btn-primary" onClick={restart} primary={'#fff'} secondary={'#ffc107'} halo={'rgba(235, 196, 117, 1)'}>Restart</Button>
     </div>
   )
 }

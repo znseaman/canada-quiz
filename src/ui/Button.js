@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Button = styled.button`
   /* .btn */
   color: ${props => props.primary};
-  /* background-color: #f4f4f4; */
+  background-color: transparent;
   padding: 10px 50px;
   text-transform: uppercase;
   font-size: 18px;
@@ -14,17 +14,17 @@ const Button = styled.button`
 
   /* .btn-primary */
   color: ${props => props.primary};
-  background-color: ${props => props.secondary};
+  border: 4px solid ${props => props.secondary};
   font-weight: bold;
   
   :active,
   :focus{
     outline: none;
-    box-shadow: ${props => `0px 2px 50px 13px ${props.halo}`};
+    box-shadow: ${props => `0px 2px 13px 3px ${props.halo}`};
   }
 
   :hover{
-    box-shadow: ${props => `0px 2px 50px 13px ${props.halo}`};
+    box-shadow: ${props => `0px 2px 13px 3px ${props.halo}`};
   }
 `
 

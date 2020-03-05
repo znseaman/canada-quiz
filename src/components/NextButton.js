@@ -14,7 +14,7 @@ export default function () {
   }, [currentAnswer])
 
   return (
-    <NextButtonStyled ref={buttonRef} data-testid="next" primary={'#4f4c4c'} secondary={'#ffc107'} halo={'rgba(235, 196, 117, 1)'} currentAnswer={currentAnswer}
+    <NextButtonStyled ref={buttonRef} data-testid="next" primary={'#fff'} secondary={'#ffc107'} halo={'rgba(235, 196, 117, 1)'} currentAnswer={currentAnswer}
       onClick={next}>Next</NextButtonStyled>
   )
 }

@@ -1,5 +1,11 @@
+:root{
+  --correct-color: #53bd8e;
+  --incorrect-color: #ad505e;
+  --select-color: #4062F6;
+}
+
 .container {
-  background-color: #282c34;
+  background-color: #272936;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,7 +22,8 @@ h2 {
 }
 
 .answer {
-  border: 1px solid #fff;
+  color: #fff;
+  border: 4px solid transparent;
   padding: 5px 10px 5px 45px;
   width: 610px;
   text-align: left;
@@ -26,24 +33,23 @@ h2 {
   cursor: pointer;
   transition: ease-in-out, width 0.35s ease-in-out;
   border-radius: .5em;
+  background-color: transparent;
 }
 
 .answer.selected.correct,
 .answer.not-selected.correct {
-  border: 1px solid #fff;
-  color: rgb(0, 0, 0);
-  background-color: #86e86f;
+  color: #fff;
+  border: 4px solid var(--correct-color);
 }
 
 .answer.selected.incorrect {
-  border: 1px solid #fff;
-  color: rgb(0, 0, 0);
-  background-color: #f74b4b;
+  color: #fff;
+  border: 4px solid var(--incorrect-color);
 }
 
 .answer[disabled]{
   background-color: transparent;
-  border: transparent;
+  border: 4px solid transparent;
   color: transparent;
   cursor: default;
 }
@@ -51,13 +57,13 @@ h2 {
 .answer:not(disabled):hover,
 .answer:not(disabled):active,
 .answer:not(disabled):focus {
-  color: #4f4c4c;
-  background-color: #86e86f;
+  border: 4px solid var(--select-color);
 }
 
 .answer[disabled]:not(.selected):not(.not-selected):hover {
   color: transparent;
   background-color: transparent;
+  border: 4px solid transparent;
 }
 
 /* .answer:focus {
@@ -65,11 +71,11 @@ h2 {
 } */
 
 .results span.correct {
-  color: #86e86f;
+  color: var(--correct-color);
   font-weight: bold;
 }
 
 .results span.failed {
-  color: #f74b4b;
+  color: var(--incorrect-color);
   font-weight: bold;
 }
