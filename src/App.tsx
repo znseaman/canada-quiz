@@ -14,9 +14,9 @@ function App() {
   const startInterval = useRef(true)
   const [secondsLeft, setSecondsLeft] = useState(10)
 
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
-    containerRef.current.focus()
+    containerRef.current!.focus()
   }, [currentQuestion])
 
   // countdown timer
@@ -57,7 +57,7 @@ function App() {
   const showSeconds = secondsLeft > 0 && !currentAnswer;
 
   return (
-    <div className="container" tabIndex={"0"} ref={containerRef}>
+    <div className="container" tabIndex={0} ref={containerRef}>
       {
         !isStarted ?
           <>

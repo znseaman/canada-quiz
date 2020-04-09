@@ -3,9 +3,9 @@ import initialState from './initialState'
 import quizReducer from '../reducers/QuizReducer'
 import { SET_CURRENT_ANSWER, SET_CURRENT_QUESTION, SET_SHOW_RESULTS, SET_ANSWERS, START } from '../reducers/types'
 
-const QuizContext = createContext()
+const QuizContext = createContext<any>({})
 
-const useStore = () => {
+const useStore = (): any => {
   const store = React.useContext(QuizContext)
   if (!store) {
     throw new Error('Cannot use `useStore` outside of a QuizProvider')
@@ -13,7 +13,7 @@ const useStore = () => {
   return store;
 }
 
-const Provider = ({ initState = initialState, ...props } = {}) => {
+const Provider: React.FC<{initState: object}> = ({ initState = initialState, ...props }) => {
   const [state, dispatch] = useReducer(quizReducer, initState)
   const { currentQuestion, currentAnswer, answers, questions } = state
 
@@ -35,11 +35,13 @@ const Provider = ({ initState = initialState, ...props } = {}) => {
     }
   }
 
-  const setCurrentAnswer = e => {
+  const setCurrentAnswer = (e:any) => {
     dispatch({ type: SET_CURRENT_ANSWER, payload: e.target.value })
   }
 
-  return <QuizContext.Provider value={{ state, dispatch, start, next, setCurrentAnswer }} {...props} />
+  return React.createElement(QuizContext.Provider, { value: { state, dispatch, start, next, setCurrentAnswer }, ...props})
+  // return <React.StrictMode>
+  // <QuizContext.Provider value={ { state, dispatch, start, next, setCurrentAnswer } } {...props } /></React.StrictMode>
 }
 
 export { Provider, useStore }
