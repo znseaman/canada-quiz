@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Result = ({ question, answer }) => {
-  const renderResultMark = (question, answer) => {
+const Result: React.FC<{question: any, answer: any}> = ({ question, answer }) => {
+  const renderResultMark = (question: any, answer: any) => {
     // eslint-disable-next-line eqeqeq
     if (question.answer != answer.answer) {
       return (
